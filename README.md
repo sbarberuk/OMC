@@ -26,6 +26,9 @@ The initialisation script uses the `omc.properties.template` file and substitues
 
 ## set_env.sh
 `set_env.sh` is a simple utility script to export the values in `$HOME/.omc/omc.properties` as environment variables.  Execute the script by sourcing it using;
+
 `. set_env.sh`
+
 or
+
 `source set_env.sh`
