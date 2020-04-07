@@ -5,11 +5,11 @@ This project consists of several utilities to help with maanaging and using Orac
 Starting at the beginning with some very simple shell/python scripts to do things like getting a list of downloadable agents or installing agents or simply listing entities.  The intention is to extend this to more sophisticated tools and utilities.
 
 ## setup.sh
-**setup.sh** will initialise your environment by creating a hidden omc directory in your home directory (**$HOME/.omc**)
+`setup.sh` will initialise your environment by creating a hidden omc directory in your home directory (`$HOME/.omc`)
 
-The initialisation will check for the existance of the **$HOME/.omc**, if it is not a directory initialisation will fail.  
+The initialisation will check for the existance of the `$HOME/.omc`, if it is not a directory initialisation will fail.  
 
-If a directory already exists then the initialisation will check for and source **omc.properties** and give you the opportunity to edit the values contained within.
+If a directory already exists then the initialisation will check for and source `omc.properties` and give you the opportunity to edit the values contained within.
 
 You will prompted to enter the following variables;
 
@@ -22,4 +22,4 @@ OMC_URL | This is the value represented in the UI under the Administartion -> Ag
 OMC USERNAME | This is the login name for the OMC Instance
 OMC_PASSWORD | This is the password associated with the OMC_USERNAME parameter
 
-The initialisation script uses the `omc.properties.template` file and substitues the values entered, creating **$HOME/.omc/omc.properties**
+The initialisation script uses the `omc.properties.template` file and substitues the values entered, creating `$HOME/.omc/omc.properties`
