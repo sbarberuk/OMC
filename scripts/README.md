@@ -50,8 +50,8 @@ optional arguments:
 
 Parameter | Description | Values
 --------- | ----------- | ------
-$1 | This parameter represents the type of OMC agent; Default value is `cloudagent` | `cloudagent`<br/>`gateway`<br/>`apmjavaasagent`<br/>`apmdotnetagent`<br/>`apmrubyagent`<br/>`apmnodejsagent`<br/>`apmiosagent`<br/>`apmandroidagent`
-$2 | The second parameter is used to identify the Operating System type for the agent;  Default value is `linux.x86` | `linux.x86`<br/>`windows.x64`<br/>aix.ppc64<br/>solaris.sparc64<br/>generic<br/>android<br/>ios
+$1 | This parameter represents the type of OMC agent;<br/> Default value is `cloudagent` | `cloudagent`<br/>`gateway`<br/>`apmjavaasagent`<br/>`apmdotnetagent`<br/>`apmrubyagent`<br/>`apmnodejsagent`<br/>`apmiosagent`<br/>`apmandroidagent`
+$2 | The second parameter is used to identify the Operating System type for the agent;  Default value is `linux.x86` | `linux.x86`<br/>`windows.x64`<br/>`aix.ppc64`<br/>`solaris.sparc64`<br/>`generic`<br/>`android`<br/>`ios`
 
 ## getEntities.sh
 
