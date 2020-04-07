@@ -2,7 +2,7 @@
 
 BASEDIR=$(dirname "$0")
 
-source ${BASEDIR}/bash_functions.sh
+source ${BASEDIR}/scripts/bash_functions.sh
 
 if [[ ! -e "${HOME}/.omc" ]]; then
    mkdir ${HOME}/.omc
@@ -56,5 +56,6 @@ sed \
 	-e "s/<your_omc_instance_id>/$(escape_sed ${OMC_INSTANCE_ID})/g" \
 	-e "s/<your_omc_url>/$(escape_sed ${OMC_URL})/g" \
 	-e "s/<your_omc_username>/$(escape_sed ${OMC_USERNAME})/g" \
-	-e "s/<your_omc_password>/$(escape_sed ${OMC_PASSWORD})/g" ${BASEDIR}/omc.properties.template > ${HOME}/.omc/omc.properties
+	-e "s/<your_omc_password>/$(escape_sed ${OMC_PASSWORD})/g" \
+	-e "s/<your_basedir>/$(escape_sed ${BASEDIR})/g" ${BASEDIR}/templates/omc.properties.template > ${HOME}/.omc/omc.properties
 exit $?

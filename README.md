@@ -23,3 +23,6 @@ OMC USERNAME | This is the login name for the OMC Instance
 OMC_PASSWORD | This is the password associated with the OMC_USERNAME parameter
 
 The initialisation script uses the `omc.properties.template` file and substitues the values entered, creating `$HOME/.omc/omc.properties`
+
+## set_env.sh
+`set_env.sh` is a simple utility script to export the values in `$HOME/.omc/omc.properties` as environment variables
