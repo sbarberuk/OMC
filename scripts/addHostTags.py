@@ -41,7 +41,7 @@ parser.add_argument("-U","--url",default=os.getenv('OMC_URL'),help="URL to the O
 parser.add_argument("-H","--host",required=True,help="hostname to add tag to")
 parser.add_argument("-t","--tag",required=True,help="tag name to be added")
 parser.add_argument("-v","--value",required=True,help="tag value be added")
-parser.add_argument("-y","--ostype",default="omc_host_linux",choices=['omc_host_linux','omc_host_windows','omc_host_aix','omc_host_solaris'],help="OS Entity Type, default=omc_host_linux")
+parser.add_argument("-O","--ostype",default="omc_host_linux",choices=['omc_host_linux','omc_host_windows','omc_host_aix','omc_host_solaris'],help="OS Entity Type, default=omc_host_linux")
 parser.add_argument("-u","--username",default=os.getenv('OMC_USERNAME'),help="Oracle Management Cloud Username, default=ENV(OMC_USERNAME)")
 parser.add_argument("-p","--password",default=os.getenv('OMC_PASSWORD'),help="Oracle Management Cloud Password, default=ENV(OMC_PASSWORD)")
 parser.add_argument("-c","--cascade",default="N",choices=['Y','N','y','n'],help="cascade the tag to all entities with an omc_uses association to the host, default=N")

@@ -22,7 +22,7 @@ The script can be executed with the -h parameter to display the help.
 ```
 ./addHostTags.py -h
 usage: addHostTags.py [-h] [-U URL] -H HOST -t TAG -v VALUE
-                      [-y {omc_host_linux,omc_host_windows,omc_host_aix,omc_host_solaris}]
+                      [-O {omc_host_linux,omc_host_windows,omc_host_aix,omc_host_solaris}]
                       [-u USERNAME] [-p PASSWORD] [-c {Y,N,y,n}]
 
 optional arguments:
@@ -32,7 +32,7 @@ optional arguments:
   -t TAG, --tag TAG     tag name to be added
   -v VALUE, --value VALUE
                         tag value be added
-  -y {omc_host_linux,omc_host_windows,omc_host_aix,omc_host_solaris}, --ostype {omc_host_linux,omc_host_windows,omc_host_aix,omc_host_solaris}
+  -O {omc_host_linux,omc_host_windows,omc_host_aix,omc_host_solaris}, --ostype {omc_host_linux,omc_host_windows,omc_host_aix,omc_host_solaris}
                         OS Entity Type, default=omc_host_linux
   -u USERNAME, --username USERNAME
                         Oracle Management Cloud Username,
