@@ -19,6 +19,7 @@ OMC_INSTANCE_NAME='<your_omc_instance_name>'
 OMC_INSTANCE_ID='<your_omc_instance_id>'
 
 # OMC_URL is the value represented in the UI under the Administartion -> Agents -> Download Agent Page
+#         leave off the https:// as this will get added by the utilities that need it
 #
 OMC_URL='<your_omc_url>'
 

@@ -8,7 +8,7 @@ source ~/.omc/omc.properties
 AGENT_TYPE="${1:-cloudagent}"
 OS_TYPE="${2:-linux.x64}"
 
-GET_AGENT="${OMC_URL}/serviceapi/agentlifecycle/download/v1/${AGENT_TYPE}/${OS_TYPE}/latest"
+GET_AGENT="https://${OMC_URL}/serviceapi/agentlifecycle/download/v1/${AGENT_TYPE}/${OS_TYPE}/latest"
 
 curl -H 'Content-Type: application/json' \
 	-H "X-USER-IDENTITY-DOMAIN-NAME: ${OMC_INSTANCE_ID}" \

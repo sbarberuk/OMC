@@ -1,11 +1,16 @@
 #!/usr/bin/python3
 
 import http.client
+from http.client import HTTPException
 import mimetypes
 import json
 import argparse
 import sys
+import os
 from base64 import b64encode
+
+OMC_URL=os.getenv('OMC_URL')
+if OMC_URL is None: raise Exception('OMC_URL not defined')
 
 def updateEntity(entityId,new_tags):
     """Updates entityId with new_tags
@@ -14,7 +19,7 @@ def updateEntity(entityId,new_tags):
     new_tags    <dict>  {"tagName","tagValue"}"""
 
     payload = ''
-    conn = http.client.HTTPSConnection("nhssupplychainomc-supplychainnhs.omc.ocp.oraclecloud.com")
+    conn = http.client.HTTPSConnection(OMC_URL)
     conn.request("GET", "/serviceapi/entityModel/data/entities/"+entityId, payload, headers)
     res = conn.getresponse()
     data = res.read()
@@ -23,7 +28,7 @@ def updateEntity(entityId,new_tags):
     sourceEntity["tags"].update(new_tags)
     
     # namespace is not returned from the getEntity API and the
-    # PATCH APPI failes if namespace is not provided. The default
+    # PATCH API fails if namespace is not provided. The default
     # value for namespace is "EMAAS"
     
     sourceEntity.update(namespace)
@@ -39,14 +44,14 @@ parser.add_argument("-H","--host",required=True,help="hostname to add tag to")
 parser.add_argument("-t","--tag",required=True,help="tag name to be added")
 parser.add_argument("-v","--value",required=True,help="tag value be added")
 parser.add_argument("-y","--ostype",default="omc_host_linux",choices=['omc_host_linux','omc_host_windows','omc_host_aix','omc_host_solaris'],help="OS Entity Type")
-parser.add_argument("-u","--username",required=True,help="Oracle Management Cloud Username")
-parser.add_argument("-p","--password",required=True,help="Oracle Management Cloud Password")
+parser.add_argument("-u","--username",default=os.getenv('OMC_USERNAME'),help="Oracle Management Cloud Username")
+parser.add_argument("-p","--password",default=os.getenv('OMC_PASSWORD'),help="Oracle Management Cloud Password")
 parser.add_argument("-c","--cascade",default="N",choices=['Y','N','y','n'],help="cascade the tag to all entities with an omc_uses association to the host")
 args = parser.parse_args()
 
-authorisation = b64encode(bytes(args.username+":"+args.password,'utf-8'))
+authorisation = b64encode(bytes(str(args.username)+":"+str(args.password),'utf-8'))
 
-conn = http.client.HTTPSConnection("nhssupplychainomc-supplychainnhs.omc.ocp.oraclecloud.com")
+conn = http.client.HTTPSConnection(OMC_URL)
 headers = {
   'Content-Type': 'application/json',
   'Authorization': 'Basic %s' % authorisation.decode('utf-8')
@@ -59,6 +64,9 @@ headers = {
 payload = ''
 conn.request("GET", "/serviceapi/entityModel/data/entities?entityType="+args.ostype+"&entityName="+args.host, payload, headers)
 res = conn.getresponse()
+if res.status != 200:
+    raise HTTPException('Failed to query entities HTTP Error {}:{}'.format(res.status, res.reason))
+
 data = res.read()
 my_data=data.decode("utf-8")
 json_data=json.loads(my_data)
