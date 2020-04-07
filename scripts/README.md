@@ -48,8 +48,8 @@ optional arguments:
 ## downloadAgent.sh
 `downloadAgent.sh` is a simple script to download the latest version of an OMC agent.  The script takes two optional positional parameters;
 
-Parameter | Value
---------- | -----
+Parameter | Value |
+--------- | ----- |
 $1 | This parameter represents the type of OMC agent; Default value is `cloudagent`; Possible values are 
 * cloudagent
 * gateway
@@ -58,7 +58,7 @@ $1 | This parameter represents the type of OMC agent; Default value is `cloudage
 * apmrucyagent
 * apmnodejsagent
 * apmiosagent
-* apmandroidagent
+* apmandroidagent |
 $2 | The second parameter is used to identify the Operating System type for the agent;  Default value is `linux.x86`; Options are;
 * linux.x86
 * windows.x64
@@ -66,7 +66,7 @@ $2 | The second parameter is used to identify the Operating System type for the 
 * solaris.sparc64
 * generic
 * android
-* ios
+* ios |
 
 ## getEntities.sh
 
