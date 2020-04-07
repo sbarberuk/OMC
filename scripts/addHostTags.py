@@ -9,9 +9,6 @@ import sys
 import os
 from base64 import b64encode
 
-OMC_URL=os.getenv('OMC_URL')
-if OMC_URL is None: raise Exception('OMC_URL not defined')
-
 def updateEntity(entityId,new_tags):
     """Updates entityId with new_tags
 
@@ -19,7 +16,7 @@ def updateEntity(entityId,new_tags):
     new_tags    <dict>  {"tagName","tagValue"}"""
 
     payload = ''
-    conn = http.client.HTTPSConnection(OMC_URL)
+    conn = http.client.HTTPSConnection(args.url)
     conn.request("GET", "/serviceapi/entityModel/data/entities/"+entityId, payload, headers)
     res = conn.getresponse()
     data = res.read()
@@ -40,13 +37,14 @@ def updateEntity(entityId,new_tags):
         print("Added "+str(new_tags)+" to "+sourceEntity["entityName"])
 
 parser=argparse.ArgumentParser()
+parser.add_argument("-U","--url",default=os.getenv('OMC_URL'),help="URL to the OMC Instance, default=ENV(OMC_URL)")
 parser.add_argument("-H","--host",required=True,help="hostname to add tag to")
 parser.add_argument("-t","--tag",required=True,help="tag name to be added")
 parser.add_argument("-v","--value",required=True,help="tag value be added")
-parser.add_argument("-y","--ostype",default="omc_host_linux",choices=['omc_host_linux','omc_host_windows','omc_host_aix','omc_host_solaris'],help="OS Entity Type")
-parser.add_argument("-u","--username",default=os.getenv('OMC_USERNAME'),help="Oracle Management Cloud Username")
-parser.add_argument("-p","--password",default=os.getenv('OMC_PASSWORD'),help="Oracle Management Cloud Password")
-parser.add_argument("-c","--cascade",default="N",choices=['Y','N','y','n'],help="cascade the tag to all entities with an omc_uses association to the host")
+parser.add_argument("-y","--ostype",default="omc_host_linux",choices=['omc_host_linux','omc_host_windows','omc_host_aix','omc_host_solaris'],help="OS Entity Type, default=omc_host_linux")
+parser.add_argument("-u","--username",default=os.getenv('OMC_USERNAME'),help="Oracle Management Cloud Username, default=ENV(OMC_USERNAME)")
+parser.add_argument("-p","--password",default=os.getenv('OMC_PASSWORD'),help="Oracle Management Cloud Password, default=ENV(OMC_PASSWORD)")
+parser.add_argument("-c","--cascade",default="N",choices=['Y','N','y','n'],help="cascade the tag to all entities with an omc_uses association to the host, default=N")
 args = parser.parse_args()
 
 authorisation = b64encode(bytes(str(args.username)+":"+str(args.password),'utf-8'))
