@@ -75,7 +75,7 @@ limit|the number of entries in the result to be returend in one REST call|2000
 offset|the offset into the result list when doing a query with limit|0
 orderBy|a comma separated list of attributes with order (asc/desc) to be used for ordering the returned entities|entityType:asc,entityName:desc
 
-For example to query all linux host entities with a display name pattern of prod you would run;
+For example to query all linux host entities with a display name pattern of **nonprod** you would run;
 ```
-getEntities.sh ?entityType=omc_host_linux&displayNamePattern=prod
+getEntities.sh "?entityType=omc_host_linux&displayNamePattern=nonprod"
 ```

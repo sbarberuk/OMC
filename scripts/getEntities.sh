@@ -2,7 +2,7 @@
 
 source ~/.omc/omc.properties
 
-GET_ENTITIES="https://${OMC_URL}/serviceapi/entityModel/uds/entities${1}"
+GET_ENTITIES="https://${OMC_URL}/serviceapi/entityModel/data/entities${1}"
 
 curl -s \
 -H 'Content-Type: application/json' \
