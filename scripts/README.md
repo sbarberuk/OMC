@@ -44,7 +44,17 @@ optional arguments:
                         cascade the tag to all entities with an omc_uses
                         association to the host, default=N
 ```
+Consider running `setup.sh`, followed by `set_env.sh` prior to running this script.
 
+**Examples**
+To add a tag `NewTag` with a value of `NewValue` to a Windows host called `MyWindowsServer` and all the entities monitored by its agent you would run;
+```
+./addHostTags.py --host MyWindowsServer --ostype omc_host_windows --tag NewTag --value NewValue --cascade Y --URL omc-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.api.omc.ocp.oraclecloud.com --username myusername@abc.com --password myPassword
+```
+However if you have already executed `setup.sh` then you can omit `--URL`, `--username` and `--password`.  To add the same tag to a linux host you would execute;
+```
+./addHostTags.py -H MyLinuxServer -T NewTag -V NewValue -c Y
+```
 ## downloadAgent.sh
 `downloadAgent.sh` is a simple script to download the latest version of an OMC agent.  The script takes two optional positional parameters;
 
