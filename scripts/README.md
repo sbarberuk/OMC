@@ -44,7 +44,7 @@ optional arguments:
                         cascade the tag to all entities with an omc_uses
                         association to the host, default=N
 ```
-**NOTE:**Consider running `setup.sh`, followed by `set_env.sh` prior to running this script.
+**NOTE:** Consider running `setup.sh`, followed by `set_env.sh` prior to running this script.
 ### Examples
 To add a tag `NewTag` with a value of `NewValue` to a Windows host called `MyWindowsServer` and all the entities monitored by its agent you would run;
 ```
