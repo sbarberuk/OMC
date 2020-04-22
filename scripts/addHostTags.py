@@ -47,9 +47,12 @@ parser.add_argument("-p","--password",default=os.getenv('OMC_PASSWORD'),help="Or
 parser.add_argument("-c","--cascade",default="N",choices=['Y','N','y','n'],help="cascade the tag to all entities with an omc_uses association to the host, default=N")
 args = parser.parse_args()
 
+if args.url is None:
+    raise Exception("OMC_URL is not defined")
+
 authorisation = b64encode(bytes(str(args.username)+":"+str(args.password),'utf-8'))
 
-conn = http.client.HTTPSConnection(OMC_URL)
+conn = http.client.HTTPSConnection(args.url)
 headers = {
   'Content-Type': 'application/json',
   'Authorization': 'Basic %s' % authorisation.decode('utf-8')
@@ -68,6 +71,9 @@ if res.status != 200:
 data = res.read()
 my_data=data.decode("utf-8")
 json_data=json.loads(my_data)
+
+if json_data["count"] == 0:
+    raise Exception("Host entity not found")
 
 entityId=json_data["items"][0]["entityId"]
 new_tags = {args.tag:args.value}

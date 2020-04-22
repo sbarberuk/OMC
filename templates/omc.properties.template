@@ -4,7 +4,7 @@
 #
 
 # BASEDIR is the directory where setup.sh exists
-BASEDIR='<you_basedir>'
+BASEDIR='<your_basedir>'
 
 # OCI_TENANT_NAME is name of your cloud account, this is the name of the account you used when 
 #                 you signed up for Oracle Cloud

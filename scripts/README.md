@@ -5,7 +5,7 @@ Script | Description
 bash_functions.sh | This is a utility script containing some functions that can be used in other bash scripts
 addHostTags.py | Is a utility to add tags to all entities on a specific host
 downloadAgent.sh | Is a simple script to download the latest agent
-getEntities.sh | Calls the REST API https://docs.oracle.com/en/cloud/paas/management-cloud/raomc/op-entitymodel-uds-entities-query-post.html to query entities
+getEntities.sh | Calls an undocumented REST API to query entities
 
 ## bash_functions.sh
 Functions in this script include
@@ -55,15 +55,31 @@ However if you have already executed `setup.sh` then you can omit `--URL`, `--us
 ./addHostTags.py -H MyLinuxServer -T NewTag -V NewValue -c Y
 ```
 ## downloadAgent.sh
-`downloadAgent.sh` is a simple script to download the latest version of an OMC agent.  The script takes two optional positional parameters;
+`downloadAgent.sh` is a simple script to download the latest version of an OMC agent.
+```
+Usage: ./downloadAgent.sh [-h] [-i] [-a AGENT_TYPE] [-o OS_TYPE]
 
-Parameter | Description | Values
---------- | ----------- | ------
-$1 | This parameter represents the type of OMC agent;<br/><br/>Default value is `cloudagent` | `cloudagent`<br/>`gateway`<br/>`apmjavaasagent`<br/>`apmdotnetagent`<br/>`apmrubyagent`<br/>`apmnodejsagent`<br/>`apmiosagent`<br/>`apmandroidagent`
-$2 | The second parameter is used to identify the Operating System type for the agent;<br/><br/>Default value is `linux.x86` | `linux.x86`<br/>`windows.x64`<br/>`aix.ppc64`<br/>`solaris.sparc64`<br/>`generic`<br/>`android`<br/>`ios`
+Downloads the latest agent version for a given (AGENT_TYPE) and operating system (OS_TYPE).
 
+        -h              help
+        -i              Don't download just show the command that would be run
+        -a AGENT_TYPE   Default=cloudagent valid options are
+
+                        cloudagent|gateway|apmjavaasagent|
+                        apmdotnetagent|apmrucyagent|apmnodejsagent|
+                        apmiosagent|apmandroidagent
+
+        -o OS_TYPE      Default=linux.x86 valid options are
+
+                        linux.x86|windows.x64|aix.ppc64|
+                        solaris.sparc64|generic|android|ios
+
+OMC does not autheticate the API call to download the agent software however the script caters for it just in case Oracle change their minds.
+
+The script sources ~/.omc/omc.properties to set OMC_USERNAME, OMC_PASSWORD, OMC_INSTANCE_ID and OMC_URL
+```
 ## getEntities.sh
-`getEntities.sh`  Calls an undocumented REST API `/serviceapi/entityModel/uds/entities` to query entities.
+`getEntities.sh`  Calls an undocumented REST API `/serviceapi/entityModel/data/entities` to query entities.
 
 By default this REST API returns a maximum of 2000 entities.  If your query returns more than 2000 entities the response is paginated, currently this script does not support pagination.
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BASEDIR=$(dirname "$0")
+BASEDIR=$(cd "$(dirname $0)"; pwd)
 
 source ${BASEDIR}/scripts/bash_functions.sh
 
